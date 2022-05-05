@@ -4,7 +4,9 @@ from tkinter import *
 
 root = Tk()
 root.title("Statistics")
-root.geometry('250x250')
+root.geometry('440x250')
+root.resizable(width=0, height=0)
+root["bg"]= "#AFFBC7"
 
 
 def getInfoEelement(statistics, table_name, country, year):
@@ -55,21 +57,27 @@ def getCountriesInTable(table_name):
 
 
 
-statistics_label = Label(root, text="Statistics", width=10)
-statistics_label.grid(column=1, row=0)
+statistics_label = Label(root, text="Statistics",font = "Broadway 12", width=11, fg = "#3C8B57")
+statistics_label.grid(column=0, row=0 ,ipadx=1, ipady=2, padx=12, pady=10)
 
-country_label = Label(root, text="Country", width=10)
-country_label.grid(column=2, row=0)
+country_label = Label(root, text="Country",font = "Broadway 12", width=10,fg ="#3C8B57")
+country_label.grid(column=1, row=0,ipadx=2, ipady=2, padx=11, pady=10)
 
 default_statistics = StringVar()
 statistics_options = OptionMenu(root, default_statistics, "life_expectancy")
-statistics_options.grid(column=1, row=1)
+statistics_options.grid(column=0, row=1)
+statistics_options.config(bg= "#EDFFF3")
+statistics_options.config(width=14)
+statistics_options.config(height=1)
 
 countries = getCountriesInTable("life_expectancy")
 
 default_country = StringVar()
 country_options = OptionMenu(root, default_country, *countries)
-country_options.grid(column=2, row=1)
+country_options.grid(column=1, row=1)
+country_options.config(bg= "#EDFFF3")
+country_options.config(width=13)
+country_options.config(height=1)
 
 
 def getRealNumberStatistics(statistics, country):
@@ -124,8 +132,11 @@ def plotDataButton():
     statistics = getRealNumberStatistics(default_statistics.get(),default_country.get())
     plotData(years,statistics,default_country.get(),default_statistics.get())
 
-button = Button(root, text="Visualize Data", command=plotDataButton)
-button.grid(column=1, row=8)
+button_v = Button(root, text="Visualize Data",font = "Broadway 16", bg = "white", fg = "PaleGreen4", activebackground = "snow2")
+button_v.place(x=10, y =100)
+
+button_y = Button(root, text="Statistics Per Year",font = "Broadway 16", bg = "white", fg = "PaleGreen4", activebackground = "snow2")
+button_y.place(x=10, y =150)
 
 root.mainloop()
 
