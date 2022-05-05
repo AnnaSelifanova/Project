@@ -70,6 +70,15 @@ statistics_options.config(bg= "#EDFFF3")
 statistics_options.config(width=14)
 statistics_options.config(height=1)
 
+year_label = Label(root, text="Year",font = "Broadway 12", width=10,fg ="#3C8B57")
+year_label.grid(column=2, row=0,ipadx=2, ipady=2, padx=11, pady=10)
+
+year = StringVar()
+entry_year = Entry(root, textvariable = year)
+entry_year.grid(column=2, row=1, ipadx=0, ipady=0, padx=0, pady=0)
+entry_year.config(bg= "#EDFFF3")
+entry_year.config(width=20)
+
 countries = getCountriesInTable("life_expectancy")
 
 default_country = StringVar()
