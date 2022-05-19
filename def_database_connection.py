@@ -7,6 +7,7 @@ root.title("Statistics")
 root.geometry('440x250')
 root.resizable(width=0, height=0)
 root["bg"] = "#AFFBC7"
+root.iconbitmap('dino.ico')
 
 
 def getInfoEelement(statistics, table_name, country, year):
@@ -156,5 +157,12 @@ button_v.place(x=10, y=100)
 button_y = Button(root, text="Statistics Per Year", font="Broadway 16", bg="white", fg="PaleGreen4",
                   activebackground="snow2", command=getInfoButton)
 button_y.place(x=10, y=150)
+
+def on_closing():
+    if messagebox.askokcancel("Выход из приложения", "Хотите выйти из приложения?"):
+        root.destroy()
+        root.protocol("WM_DELETE_WINDOW", on_closing)
+button_quit = Button(text = "Quit", command = on_closing,font = "Broadway 16", bg = "white", fg = "PaleGreen4", activebackground = "snow2")
+button_quit.place(x=183, y =200)
 
 root.mainloop()
