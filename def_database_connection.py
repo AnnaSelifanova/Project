@@ -165,7 +165,9 @@ def on_closing():
 button_quit = Button(text = "Quit", command = on_closing,font = "Broadway 16", bg = "white", fg = "PaleGreen4", activebackground = "snow2")
 button_quit.place(x=183, y =200)
 
-def getBest25(statistics,year):
+def getBest25():
+    statistics = default_statistics.get()
+    year = default_year.get()
     hostname = 'localhost'
     database = 'University Project'
     username = 'postgres'
@@ -195,7 +197,9 @@ def getBest25(statistics,year):
     plt.show()
 
 
-def getWorst25(statistics,year):
+def getWorst25():
+    statistics = default_statistics.get()
+    year = default_year.get()
     hostname = 'localhost'
     database = 'University Project'
     username = 'postgres'
