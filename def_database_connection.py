@@ -165,4 +165,64 @@ def on_closing():
 button_quit = Button(text = "Quit", command = on_closing,font = "Broadway 16", bg = "white", fg = "PaleGreen4", activebackground = "snow2")
 button_quit.place(x=183, y =200)
 
+def getBest25(statistics,year):
+    hostname = 'localhost'
+    database = 'University Project'
+    username = 'postgres'
+    pwd = '11121977'
+    port_id = '5433'
+
+    conn = psycopg2.connect(
+        host=hostname,
+        dbname=database,
+        user=username,
+        password=pwd,
+        port=port_id
+    )
+    cur = conn.cursor()
+    getInfo_script = f"SELECT {statistics},country FROM {statistics} WHERE year = {year};"
+    cur.execute(getInfo_script)
+    data = list(map(eval, [line.strip('(').strip(')') for line in list(map(str, cur.fetchall()))]))
+    data.sort(key=lambda y: y[0])
+    data = data[-25:]
+    x_points = [x[0] for x in data]
+    y_points = [y for y in range(0, len(x_points) * 10000, 10000)]
+    names = [x[1] for x in data]
+    plt.scatter(x_points, y_points)
+    plt.yticks(y_points, names)
+    plt.xlabel(f"{statistics} in {year}")
+    plt.title(f"25 countries with the best statistics in {statistics} in {year}")
+    plt.show()
+
+
+def getWorst25(statistics,year):
+    hostname = 'localhost'
+    database = 'University Project'
+    username = 'postgres'
+    pwd = '11121977'
+    port_id = '5433'
+
+    conn = psycopg2.connect(
+        host=hostname,
+        dbname=database,
+        user=username,
+        password=pwd,
+        port=port_id
+    )
+    cur = conn.cursor()
+    getInfo_script = f"SELECT {statistics},country FROM {statistics} WHERE year = {year};"
+    cur.execute(getInfo_script)
+    data = list(map(eval, [line.strip('(').strip(')') for line in list(map(str, cur.fetchall()))]))
+    data.sort(key=lambda y: y[0])
+    data = data[:25]
+    x_points = [x[0] for x in data]
+    y_points = [y for y in range(0, len(x_points) * 10000, 10000)]
+    names = [x[1] for x in data]
+    plt.scatter(x_points, y_points)
+    plt.yticks(y_points, names)
+    plt.xlabel(f"{statistics} in {year}")
+    plt.title(f"25 countries with the worst statistics in {statistics} in year {year}")
+    plt.show()
+
+
 root.mainloop()
