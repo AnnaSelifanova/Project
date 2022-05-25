@@ -4,7 +4,7 @@ from tkinter import *
 
 root = Tk()
 root.title("Statistics")
-root.geometry('440x250')
+root.geometry('440x350')
 root.resizable(width=0, height=0)
 root["bg"] = "#AFFBC7"
 root.iconbitmap('dino.ico')
@@ -228,5 +228,10 @@ def getWorst25():
     plt.title(f"25 countries with the worst statistics in {statistics} in year {year}")
     plt.show()
 
+button_b = Button(root, text="25 Countries With The Best Statistics",font = "Broadway 14", bg = "white", fg = "PaleGreen4", activebackground = "snow2", command=getBest25)
+button_b.place(x=10, y =200)
+
+button_w = Button(root, text="25 Countries With The Worst Statistics",font = "Broadway 14", bg = "white", fg = "PaleGreen4", activebackground = "snow2", command=getWorst25)
+button_w.place(x=10, y =250)
 
 root.mainloop()
