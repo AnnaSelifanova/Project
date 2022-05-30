@@ -10,7 +10,7 @@ root["bg"] = "#AFFBC7"
 root.iconbitmap('dino.ico')
 
 
-def getInfoEelement(statistics, table_name, country, year):
+def getInfoEelement(statistics, table_name, country, year): #Функция возращает статистический показатель страны за определенный год
     hostname = 'localhost'
     database = 'University Project'
     username = 'postgres'
@@ -39,7 +39,7 @@ def getInfoButton():
 
 
 
-def getCountriesInTable(table_name):
+def getCountriesInTable(table_name):  #функция возвращает список всех стран, информация о которых есть в таблице с названием "table_name"
     hostname = 'localhost'
     database = 'University Project'
     username = 'postgres'
@@ -95,7 +95,7 @@ country_options.config(width=13)
 country_options.config(height=1)
 
 
-def getRealNumberStatistics(statistics, country):
+def getRealNumberStatistics(statistics, country): #функция возвращает статистические данные конкретной страны за весь период, содержащийся в таблице
     hostname = 'localhost'
     database = 'University Project'
     username = 'postgres'
@@ -115,7 +115,7 @@ def getRealNumberStatistics(statistics, country):
     return list(map(float, [stats.strip("(").strip(")").strip(",") for stats in list(map(str, cur.fetchall()))]))
 
 
-def getYears(statistics, country):
+def getYears(statistics, country): #функция возвращает спиосок всех годов ,содержащихся в таблице для конкретной страны
     hostname = 'localhost'
     database = 'University Project'
     username = 'postgres'
@@ -135,7 +135,7 @@ def getYears(statistics, country):
     return list(map(int, [years.strip("(").strip(")").strip(",") for years in list(map(str, cur.fetchall()))]))
 
 
-def plotData(years, statistics, country, statistics_name):
+def plotData(years, statistics, country, statistics_name): #функция визуализирует ход изменения статистических показателей конкретной страны за весь период
     plt.bar(years, statistics)
     plt.xlim(1950, 2025)
     plt.xlabel("Year")
@@ -165,7 +165,7 @@ def on_closing():
 button_quit = Button(text = "Quit", command = on_closing,font = "Broadway 16", bg = "white", fg = "PaleGreen4", activebackground = "snow2")
 button_quit.place(x=183, y =200)
 
-def getBest25():
+def getBest25(): #функция находит 25 стран с лучшим выбранным статистическим показателем и визулизирует их на графике
     statistics = default_statistics.get()
     year = default_year.get()
     hostname = 'localhost'
@@ -197,7 +197,7 @@ def getBest25():
     plt.show()
 
 
-def getWorst25():
+def getWorst25():  #функция находит 25 стран с худшим выбранным статистическим показателем и визулизирует их на графике
     statistics = default_statistics.get()
     year = default_year.get()
     hostname = 'localhost'
